@@ -4,7 +4,7 @@ import Login from "./Login";
 import Chat from "./Chat";
 
 const AppRouter = () => {
-  let user = true;
+  let user = false;
   return user ? (
     <>
       <Routes>
