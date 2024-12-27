@@ -1,21 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Context } from "../index";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Link from "@mui/material/Link";
+import Button from "@mui/material/Button";
 
 const NavBar = () => {
-  let user = false;
+  const { auth } = useContext(Context);
+  const [user] = useAuthState(auth);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar className="ml-auto">
           {user ? (
-            <Link href="/" color="textPrimary" underline="none">
+            <Button
+              onClick={() => auth.signOut()}
+              color="inherit"
+              variant="outlined"
+            >
               Logout
-            </Link>
+            </Button>
           ) : (
-            <Link href="/login" color="textPrimary" underline="none">
+            <Link href="/login" color="primary" underline="none">
               Login
             </Link>
           )}
